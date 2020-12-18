@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block css %}
+  <link href="../static/css/jqvmap.css" media="screen" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block script %}
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script type="text/javascript" src="../static/js/jquery.vmap.js"></script>
+  <script type="text/javascript" src="../static/js/jquery.vmap.usa.js" charset="utf-8"></script>
+
+  <script type="text/javascript">
+  jQuery(document).ready(function() {
+    jQuery('#vmap').vectorMap(
+    {
+        map: 'usa_en',
+        backgroundColor: '#a5bfdd',
+        borderColor: '#818181',
+        borderOpacity: 0.25,
+        borderWidth: 1,
+        color: '#f4f3f0',
+        enableZoom: true,
+        hoverColor: '#c9dfaf',
+        hoverOpacity: null,
+        normalizeFunction: 'linear',
+        scaleColors: ['#b6d6ff', '#005ace'],
+        selectedColor: '#c9dfaf',
+        selectedRegions: null,
+        showTooltip: true,
+        onRegionClick: function(element, code, region)
+        {
+          window.location.href = "/state/".concat(code)
+        }
+    });
+  });
+  </script>
+{% endblock %}
+
+{% block title %}
+  <title>USA Today Map</title>
+{% endblock %}
+
+{% block body %}
+  <div id="vmap" style="height: 100%;"></div>
+{% endblock %}
